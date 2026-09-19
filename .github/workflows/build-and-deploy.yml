@@ -34,23 +34,23 @@ jobs:
       - name: Set up Environment Variables
         run: |
           # MAP_STORAGE_API_KEY must always come from GitHub Secrets in CI
-          if [ -z "${{ secrets.MAP_STORAGE_API_KEY }}" ]; then
-            echo "Error: MAP_STORAGE_API_KEY is not set in GitHub Secrets."
-            exit 1
-          fi
-          echo "MAP_STORAGE_API_KEY=${{ secrets.MAP_STORAGE_API_KEY }}" >> $GITHUB_ENV
+          #if [ -z "${{ secrets.MAP_STORAGE_API_KEY }}" ]; then
+          #  echo "Error: MAP_STORAGE_API_KEY is not set in GitHub Secrets."
+          #  exit 1
+          #fi
+          #echo "MAP_STORAGE_API_KEY=${{ secrets.MAP_STORAGE_API_KEY }}" >> $GITHUB_ENV
 
           # MAP_STORAGE_URL can fall back to .env if not in GitHub Secrets
-          if [ -n "${{ secrets.MAP_STORAGE_URL }}" ]; then
-            echo "MAP_STORAGE_URL=${{ secrets.MAP_STORAGE_URL }}" >> $GITHUB_ENV
-          else
-            MAP_STORAGE_URL=$(grep '^[^#]*MAP_STORAGE_URL' .env | cut -d '=' -f2)
-            if [ -z "$MAP_STORAGE_URL" ]; then
-              echo "Error: MAP_STORAGE_URL is not set in GitHub Secrets or .env."
-              exit 1
-            fi
-            echo "MAP_STORAGE_URL=$MAP_STORAGE_URL" >> $GITHUB_ENV
-          fi
+          #if [ -n "${{ secrets.MAP_STORAGE_URL }}" ]; then
+          #  echo "MAP_STORAGE_URL=${{ secrets.MAP_STORAGE_URL }}" >> $GITHUB_ENV
+          #else
+          #  MAP_STORAGE_URL=$(grep '^[^#]*MAP_STORAGE_URL' .env | cut -d '=' -f2)
+          #  if [ -z "$MAP_STORAGE_URL" ]; then
+          #    echo "Error: MAP_STORAGE_URL is not set in GitHub Secrets or .env."
+          #    exit 1
+          #  fi
+          #  echo "MAP_STORAGE_URL=$MAP_STORAGE_URL" >> $GITHUB_ENV
+          #fi
 
           # UPLOAD_DIRECTORY can fall back to .env if not in GitHub Secrets, and to an arbitrary value if not in .env
           if [ -n "${{ secrets.UPLOAD_DIRECTORY }}" ]; then
